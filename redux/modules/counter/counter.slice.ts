@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { IReduxCounter } from "@Interfaces";
 
 const reducerName = "counter";
 
-export const initialState: IReduxCounter.IInitialState = {
+export const initialState: any = {
   countNumber: 0,
 };
 
