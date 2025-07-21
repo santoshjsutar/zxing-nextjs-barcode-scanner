@@ -1,8 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+// import dynamic from 'next/dynamic';
 import { useState } from "react";
 import { useZxing, Result } from "react-zxing";
 
+// const QrScanner = dynamic(() => import('../components/QrScanner'), { ssr: false });
+import QrScanner from '../components/QrScanner';
 export default function Home() {
   const [text, setText] = useState<string>("");
   const {
@@ -23,6 +27,16 @@ export default function Home() {
     constraints: { video: { facingMode: "environment" } },
     timeBetweenDecodingAttempts: 500,
   });
+
+  const handleScanSuccess = (text: any, result: any) => {
+    alert(`Scanned: ${text}`);
+    console.log('Full result:', result);
+  };
+
+  const handleScanFailure = (error: any) => {
+    console.warn(`Scan error: ${error}`);
+  };
+
   return (
     <div>
       <video ref={videoRef} style={{ width: "100%", maxWidth: 400 }} />
@@ -34,6 +48,8 @@ export default function Home() {
       <p>
         Decoded text: <strong>{text}</strong>
       </p>
+
+      <QrScanner onScanSuccess={handleScanSuccess} onScanFailure={handleScanFailure} />
     </div>
   );
   // return (
