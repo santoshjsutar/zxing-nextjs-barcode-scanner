@@ -12,7 +12,7 @@ const QrScanner = ({ onScanSuccess, onScanFailure }: any) => {
     if (!scannerRef.current) {
       const config = {
         fps: 120,
-        qrbox: { width: 500, height: 500 },
+        qrbox: { width: 190, height: 70 },
       };
 
       const scanner = new Html5QrcodeScanner(scannerId, config, false);
