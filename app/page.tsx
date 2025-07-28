@@ -2,31 +2,31 @@
 "use client";
 
 // import dynamic from 'next/dynamic';
-import { useState } from "react";
-import { useZxing, Result } from "react-zxing";
+// import { useState } from "react";
+// import { useZxing, Result } from "react-zxing";
 
 // const QrScanner = dynamic(() => import('../components/QrScanner'), { ssr: false });
 import QrScanner from '../components/QrScanner';
 export default function Home() {
-  const [text, setText] = useState<string>("");
-  const {
-    ref: videoRef,
-    torch: {
-      on: torchOn,
-      off: torchOff,
-      isOn: torchIsOn,
-      isAvailable: torchAvailable,
-    },
-  } = useZxing({
-    onDecodeResult(result: Result) {
-      setText(result.getText());
-    },
-    onDecodeError(error: Error) {
-      console.error("Decode failed:", error);
-    },
-    constraints: { video: { facingMode: "environment" } },
-    timeBetweenDecodingAttempts: 500,
-  });
+  // const [text, setText] = useState<string>("");
+  // const {
+  //   ref: videoRef,
+  //   torch: {
+  //     on: torchOn,
+  //     off: torchOff,
+  //     isOn: torchIsOn,
+  //     isAvailable: torchAvailable,
+  //   },
+  // } = useZxing({
+  //   onDecodeResult(result: Result) {
+  //     setText(result.getText());
+  //   },
+  //   onDecodeError(error: Error) {
+  //     console.error("Decode failed:", error);
+  //   },
+  //   constraints: { video: { facingMode: "environment" } },
+  //   timeBetweenDecodingAttempts: 500,
+  // });
 
   const handleScanSuccess = (text: any, result: any) => {
     alert(`Scanned: ${text}`);
@@ -39,7 +39,7 @@ export default function Home() {
 
   return (
     <div>
-      <video ref={videoRef} style={{ width: "100%", maxWidth: 400 }} />
+      {/* <video ref={videoRef} style={{ width: "100%", maxWidth: 400 }} />
       {torchAvailable && (
         <button onClick={() => (torchIsOn ? torchOff() : torchOn())}>
           {torchIsOn ? "🔦 Turn off torch" : "🔦 Turn on torch"}
@@ -47,7 +47,7 @@ export default function Home() {
       )}
       <p>
         Decoded text: <strong>{text}</strong>
-      </p>
+      </p> */}
 
       <QrScanner onScanSuccess={handleScanSuccess} onScanFailure={handleScanFailure} />
     </div>

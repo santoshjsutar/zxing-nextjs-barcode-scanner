@@ -11,7 +11,7 @@ const QrScanner = ({ onScanSuccess, onScanFailure }: any) => {
   useEffect(() => {
     if (!scannerRef.current) {
       const config = {
-        fps: 120,
+        fps: 70,
         qrbox: { width: 190, height: 70 },
       };
 
